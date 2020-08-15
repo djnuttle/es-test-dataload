@@ -1,0 +1,21 @@
+version: "2.2"
+
+services:
+    es-test-data-load-service:
+      extends:
+        file: "common.yml"
+        service: "common"
+      image: "es-test-dataload:latest"
+      mem_limit: "128m"
+      restart: on-failure:3
+      container_name: "cr_es-test-dataload-run-1"
+      environment: 
+        es_url: http://chicago-elasticsearch.service.imanagecloud.com:9950
+        batch_size: "1000"
+        index_name: "local.test.index"
+        num_of_shards: "1"
+        num_of_replicas: "1"
+        count: "100000"
+        # username:
+        # password:
+        # force_init_index: "True" 
